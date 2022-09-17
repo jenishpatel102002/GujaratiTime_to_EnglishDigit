@@ -1,0 +1,38 @@
+
+Project Title: Time conversation Gujarati to English
+
+Rules of Language:
+•	Keyword:
+ 	savar, bapor, sanj, raat
+ 	na
+•	Operation:
+ 	sava, sada, pona
+ 	dodh, adhi
+Code:
+%{
+#include<stdio.h>
+%}
+Digit [0-9]+
+Keyword "savar"|"bopor"|"sanj"|"raat"
+keyw1 "na"
+Operation "sava"|"sada"|"pona"
+Ope1 "dodh"|"adhi"
+%%
+{Keyword} {printf("Keyword: %s\n",yytext);}
+{keyw1} {printf("Keyword1: %s\n",yytext);}
+{Operation} {printf("Operation: %s\n",yytext);}
+{Ope1} {printf("Operation1: %s\n",yytext);}
+{Digit} {printf("Digit: %s\n",yytext);}
+.|\n   {}
+%%
+int yywrap(){
+return 0;
+}
+int main()
+{
+     extern FILE *yyin,*yyout;
+     yyin=fopen("input.txt","r");
+     yyout=fopen("output.txt","w");
+     yylex();
+	 return 0;
+} 

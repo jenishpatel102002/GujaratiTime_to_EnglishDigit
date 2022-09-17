@@ -1,0 +1,29 @@
+%{
+#include<stdio.h>
+%}
+Digit [0-9]+
+Keyword "savar"|"bopor"|"sanj"|"raat"
+keyw1 "na"
+Operation "sava"|"sada"|"pona"
+Ope1 "dodh"|"adhi"
+%%
+{Keyword} {printf("Keyword: %s\n",yytext);}
+{keyw1} {printf("Keyword1: %s\n",yytext);}
+{Operation} {printf("Operation: %s\n",yytext);}
+{Ope1} {printf("Operation1: %s\n",yytext);}
+{Digit} {printf("Digit: %s\n",yytext);}
+[ ]  {printf("",yytext);}
+\n  {printf("\n",yytext);}
+.   {printf("Invalid: %s\n",yytext);}
+%%
+int yywrap(){
+return 0;
+}
+int main()
+{
+     extern FILE *yyin,*yyout;
+     yyin=fopen("input.txt","r");
+     yylex();
+     printf("NEW2");
+     return 0;
+}
